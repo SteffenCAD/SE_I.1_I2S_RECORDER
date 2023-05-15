@@ -1,0 +1,4 @@
+audio_sd.c:39:6:sd_card_init	2
+audio_sd.c:54:6:start_recording	2
+audio_sd.c:98:6:write2wave_file	6
+audio_sd.c:128:6:stop_recording	2

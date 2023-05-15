@@ -76,8 +76,8 @@ volatile uint8_t  half_i2s3, full_i2s3;
 void SystemClock_Config(void);
 void PeriphCommonClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_USART2_UART_Init(void);
 static void MX_DMA_Init(void);
+static void MX_USART2_UART_Init(void);
 static void MX_SDIO_SD_Init(void);
 static void MX_I2S3_Init(void);
 static void MX_I2S2_Init(void);
@@ -123,8 +123,8 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_USART2_UART_Init();
   MX_DMA_Init();
+  MX_USART2_UART_Init();
   MX_FATFS_Init();
   MX_SDIO_SD_Init();
   MX_I2S3_Init();
@@ -171,7 +171,7 @@ int main(void)
 			  else
 			  {
 				  start_stop_recording = 1;
-				  start_recording(I2S_AUDIOFREQ_32K);
+				  start_recording(I2S_AUDIOFREQ_22K);
 				  //printf("start_recording %d and %d\n", half_i2s, full_i2s,1);
 				  HAL_I2S_Receive_DMA(&hi2s2, (uint16_t *)data_i2s1, sizeof(data_i2s1)/2);
 				  HAL_I2S_Receive_DMA(&hi2s3, (uint16_t *)data_i2s2, sizeof(data_i2s2)/2);
@@ -309,7 +309,7 @@ static void MX_I2S2_Init(void)
   hi2s2.Init.Standard = I2S_STANDARD_PHILIPS;
   hi2s2.Init.DataFormat = I2S_DATAFORMAT_16B_EXTENDED;
   hi2s2.Init.MCLKOutput = I2S_MCLKOUTPUT_DISABLE;
-  hi2s2.Init.AudioFreq = I2S_AUDIOFREQ_32K;
+  hi2s2.Init.AudioFreq = I2S_AUDIOFREQ_22K;
   hi2s2.Init.CPOL = I2S_CPOL_LOW;
   hi2s2.Init.ClockSource = I2S_CLOCK_PLL;
   hi2s2.Init.FullDuplexMode = I2S_FULLDUPLEXMODE_DISABLE;
@@ -343,7 +343,7 @@ static void MX_I2S3_Init(void)
   hi2s3.Init.Standard = I2S_STANDARD_PHILIPS;
   hi2s3.Init.DataFormat = I2S_DATAFORMAT_16B_EXTENDED;
   hi2s3.Init.MCLKOutput = I2S_MCLKOUTPUT_DISABLE;
-  hi2s3.Init.AudioFreq = I2S_AUDIOFREQ_32K;
+  hi2s3.Init.AudioFreq = I2S_AUDIOFREQ_22K;
   hi2s3.Init.CPOL = I2S_CPOL_LOW;
   hi2s3.Init.ClockSource = I2S_CLOCK_PLL;
   hi2s3.Init.FullDuplexMode = I2S_FULLDUPLEXMODE_DISABLE;
@@ -377,7 +377,7 @@ static void MX_I2S4_Init(void)
   hi2s4.Init.Standard = I2S_STANDARD_PHILIPS;
   hi2s4.Init.DataFormat = I2S_DATAFORMAT_16B_EXTENDED;
   hi2s4.Init.MCLKOutput = I2S_MCLKOUTPUT_DISABLE;
-  hi2s4.Init.AudioFreq = I2S_AUDIOFREQ_32K;
+  hi2s4.Init.AudioFreq = I2S_AUDIOFREQ_22K;
   hi2s4.Init.CPOL = I2S_CPOL_LOW;
   hi2s4.Init.ClockSource = I2S_CLOCK_PLL;
   hi2s4.Init.FullDuplexMode = I2S_FULLDUPLEXMODE_DISABLE;
@@ -412,7 +412,7 @@ static void MX_SDIO_SD_Init(void)
   hsd.Init.ClockPowerSave = SDIO_CLOCK_POWER_SAVE_DISABLE;
   hsd.Init.BusWide = SDIO_BUS_WIDE_1B;
   hsd.Init.HardwareFlowControl = SDIO_HARDWARE_FLOW_CONTROL_DISABLE;
-  hsd.Init.ClockDiv = 8;
+  hsd.Init.ClockDiv = 12;
   /* USER CODE BEGIN SDIO_Init 2 */
 
   /* USER CODE END SDIO_Init 2 */
