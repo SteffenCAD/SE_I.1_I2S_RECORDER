@@ -84,6 +84,7 @@ void start_recording(uint32_t frequency)
 	if(sd_result != 0)
 	{
 		printf("error in creating a file: %d \n", sd_result);
+		HAL_GPIO_TogglePin(LED_init_GPIO_Port, LED_init_Pin);
 		while(1);
 	}
 	else
@@ -122,6 +123,7 @@ void write2wave_file(uint8_t *data, uint16_t data_size, uint8_t channel)
 	if(sd_result != 0)
 	{
 		printf("error in writing to the file: %d \n", sd_result);
+		HAL_GPIO_TogglePin(LED_write_GPIO_Port, LED_write_Pin);
 	}
 }
 
